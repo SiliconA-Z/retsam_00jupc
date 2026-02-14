@@ -346,7 +346,7 @@ extern void CPS_EncodeNbName(u8 *d, u8 *s);
 
 extern void CPSi_RecvCallbackFunc();
 
-#define CPS_MK_IPv4(a,b,c,d) (((u32)(a)<<24)+((u32)(b)<<16)+((u32)(c)<<8)+(u32)(d))
+#define CPS_MK_IPv4(a,b,c,d) (((u32)(a)<<24)|((u32)(b)<<16)|((u32)(c)<<8)|(u32)(d))
 #define CPS_CV_IPv4(ip) (u8)((ip) >> 24), (u8)((ip) >> 16), (u8)((ip) >> 8), (u8)(ip)
 
 #define OS_YieldThread_() OS_YieldThread()
