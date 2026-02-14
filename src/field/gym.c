@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	gym.c
- * @brief	ジム仕掛けとか
+ * @bfief	ジム仕掛けとか
  * @author	Nozomu Saito
  *
  */
@@ -59,7 +59,7 @@
 #define MODEL_WATER_LV3	(FX32_ONE*16*4)	//モデル高さ３段階
 #define WATER_DIF	(FX32_ONE)		//高さ変動値（モデル高さ用）
 
-#define WATER_GYM_DATA_HEIGHT_ID	(0)		//水位制御用エグゼハイトインデックス（水ジム水位用）
+#define WTAER_GYM_DATA_HRIGHT_ID	(0)	//拡張高さ参照インデックス（水ジム水面用）
 
 //アニメ制御コード
 #define WATER_GYM_BTN_ANM1		(1)
@@ -80,7 +80,7 @@
 #define MODEL_GHOST_LIFT_LV2	(FX32_ONE*16*10)	//モデル高さ２段階
 #define GHOST_LIFT_DIF	(FX32_ONE)		//高さ変動値（モデル高さ用）
 
-#define GHOST_GYM_DATA_HEIGHT_ID	(0)		//昇降制御用エグゼハイトインデックス（ゴーストジムリフト用）
+#define GHOST_GYM_DATA_HRIGHT_ID	(0)	//拡張高さ参照インデックス（ゴーストジムリフト用）
 
 #define GHOST_GYM_EX_HEIGHT_X	(8)
 #define GHOST_GYM_EX_HEIGHT_Z	(13)
@@ -354,7 +354,7 @@ static BOOL GMEVENT_SetGymWaterLv1(GMEVENT_CONTROL * event)
 		}
 		break;
 	case 2:	//高さセット
-		EXH_SetExHeight( WATER_GYM_DATA_HEIGHT_ID, WATER_LV1, fsys->ExHeightList );
+		EXH_SetExHeight( WTAER_GYM_DATA_HRIGHT_ID, WATER_LV1, fsys->ExHeightList );
 		//水位変更音停止
 		Snd_SeStopBySeqNo( SE_NOMOSE_GYM_BUTTON, 0 );
 		(egw->seq) ++;
@@ -447,7 +447,7 @@ static BOOL GMEVENT_SetGymWaterLv2(GMEVENT_CONTROL * event)
 		}
 		break;
 	case 4:	//高さセット
-		EXH_SetExHeight( WATER_GYM_DATA_HEIGHT_ID, WATER_LV2, fsys->ExHeightList );
+		EXH_SetExHeight( WTAER_GYM_DATA_HRIGHT_ID, WATER_LV2, fsys->ExHeightList );
 		//水位変更音停止
 		Snd_SeStopBySeqNo( SE_NOMOSE_GYM_BUTTON, 0 );
 		(egw->seq) ++;
@@ -506,7 +506,7 @@ static BOOL GMEVENT_SetGymWaterLv3(GMEVENT_CONTROL * event)
 		}
 		break;
 	case 2:	//高さセット
-		EXH_SetExHeight( WATER_GYM_DATA_HEIGHT_ID, WATER_LV3, fsys->ExHeightList );
+		EXH_SetExHeight( WTAER_GYM_DATA_HRIGHT_ID, WATER_LV3, fsys->ExHeightList );
 		//水位変更音停止
 		Snd_SeStopBySeqNo( SE_NOMOSE_GYM_BUTTON, 0 );
 		(egw->seq) ++;
@@ -552,7 +552,7 @@ void GYM_SetupWaterGym(FIELDSYS_WORK *fsys)
 	}
 
 	//拡張高さの作成
-	EXH_SetUpExHeightData(	WATER_GYM_DATA_HEIGHT_ID,
+	EXH_SetUpExHeightData(	WTAER_GYM_DATA_HRIGHT_ID,
 							WATER_GYM_EX_HEIGHT_X,
 							WATER_GYM_EX_HEIGHT_Z,
 							WATER_GYM_EX_HEIGHT_W,
@@ -606,7 +606,7 @@ void GYM_SetupWaterGym(FIELDSYS_WORK *fsys)
 	}
 	//
 	//高さデータの変更
-	EXH_SetExHeight( WATER_GYM_DATA_HEIGHT_ID, data_height, fsys->ExHeightList );
+	EXH_SetExHeight( WTAER_GYM_DATA_HRIGHT_ID, data_height, fsys->ExHeightList );
 	
 	//３種類のボタン状況セット
 	{
@@ -744,7 +744,7 @@ void GYM_SetupGhostGym(FIELDSYS_WORK *fsys)
 	}
 	
 	//拡張高さの作成
-	EXH_SetUpExHeightData(	GHOST_GYM_DATA_HEIGHT_ID,
+	EXH_SetUpExHeightData(	GHOST_GYM_DATA_HRIGHT_ID,
 							GHOST_GYM_EX_HEIGHT_X,
 							GHOST_GYM_EX_HEIGHT_Z,
 							GHOST_GYM_EX_HEIGHT_W,
@@ -780,7 +780,7 @@ void GYM_SetupGhostGym(FIELDSYS_WORK *fsys)
 	}
 	//
 	//高さデータの変更
-	EXH_SetExHeight( GHOST_GYM_DATA_HEIGHT_ID, data_height, fsys->ExHeightList );
+	EXH_SetExHeight( GHOST_GYM_DATA_HRIGHT_ID, data_height, fsys->ExHeightList );
 }
 
 //---------------------------------------------------------------------------
@@ -863,7 +863,7 @@ static BOOL GMEVENT_MoveUpGymGhost(GMEVENT_CONTROL * event)
 		}
 		break;
 	case 2:	//高さセット
-		EXH_SetExHeight( GHOST_GYM_DATA_HEIGHT_ID, GHOST_LIFT_LV2, fsys->ExHeightList );
+		EXH_SetExHeight( GHOST_GYM_DATA_HRIGHT_ID, GHOST_LIFT_LV2, fsys->ExHeightList );
 		//自機の高さ自動取得をオン
 		Player_HeightGetSet_ON_OFF( fsys->player, TRUE );
 
@@ -923,7 +923,7 @@ static BOOL GMEVENT_MoveDownGymGhost(GMEVENT_CONTROL * event)
 		}
 		break;
 	case 2:	//高さセット
-		EXH_SetExHeight( GHOST_GYM_DATA_HEIGHT_ID, GHOST_LIFT_LV1, fsys->ExHeightList );
+		EXH_SetExHeight( GHOST_GYM_DATA_HRIGHT_ID, GHOST_LIFT_LV1, fsys->ExHeightList );
 		//自機の高さ自動取得をオン
 		Player_HeightGetSet_ON_OFF( fsys->player, TRUE );
 

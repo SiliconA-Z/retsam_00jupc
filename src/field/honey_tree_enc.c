@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	honey_tree_enc.c
- * @brief	蜜塗りエンカウント
+ * @bfief	蜜塗りエンカウント
  * @author	Nozomu Saito
  *
  *
@@ -43,7 +43,7 @@ enum{
 	HTE_NONE,
 	HTE_NORMAL,
 	HTE_RARE,
-	HTE_GREAT_RARE,
+	HTE_GRATE_RARE,
 };
 
 typedef struct HONEY_DATA_ANM_tag
@@ -327,7 +327,7 @@ static void SetRareLv(const BOOL inHit, u8 *outRare)
 	rand = gf_p_rand(100);
 	if (inHit){
 		if(rand<1){			//1%
-			*outRare = HTE_GREAT_RARE;	//激レア
+			*outRare = HTE_GRATE_RARE;	//激レア
 		}else if(rand<10){	//9%
 			*outRare = HTE_NONE;		//ハズレ
 		}else if(rand<30){	//20%
@@ -386,7 +386,7 @@ static void SetHoneyTreeTblMonsNo(u8 *outTblMonsNo)
 static const int SetHoneyTreeEncTbl(const u8 inRareLv)
 {
 	int tbl_no;
-	if (inRareLv == HTE_GREAT_RARE){	//超レア
+	if (inRareLv == HTE_GRATE_RARE){	//超レア
 		tbl_no = TH_ENC_TBL_G_RARE;
 	}else if(inRareLv == HTE_RARE){		//レア
 		tbl_no = TH_ENC_TBL_RARE;
@@ -411,7 +411,7 @@ static const int SetSwayLv(const u8 inRareLv)
 	int rand;
 	rand = gf_p_rand(100);
 	
-	if (inRareLv == HTE_GREAT_RARE){	//超レア
+	if (inRareLv == HTE_GRATE_RARE){	//超レア
 		if (rand<5){		//5%
 			sway_lv = SWAY_LV_GRATE;
 		}else if(rand<6){	//1%
@@ -461,7 +461,7 @@ static const int SetSwayLv(const u8 inRareLv)
  * アニメナンバーは、field_3d_anime.c内のアニメテーブルに依存します
  *
  * @param	inRareLv		揺れ具合
- * @param	outAnimeNo		アニメナンバー　0：ノーマル　1すごく揺れる　2：ものごっつ揺れる
+ * @oaram	outAnimeNo		アニメナンバー　0：ノーマル　1すごく揺れる　2：ものごっつ揺れる
  *
  * @return	BOOL			TRUE：アニメする	FALSE：アニメしない
  */
@@ -611,16 +611,12 @@ static BOOL CheckRareFlg(const u32 inTrainerID, const u8 inIndex)
 	temp[3] %= HONEY_TREE_MAX;
 
 	for(i=1;i<4;i++){
-		j = 0;
-		while( j < i ){
+		for(j=0;j<i;j++){
 			if (temp[j] == temp[i]){
 				temp[i]++;
 				if (temp[i]>=HONEY_TREE_MAX){
 					temp[i] = 0;
 				}
-				j = 0;	// 重複したので最初からチェックし直す
-			}else{
-				j++;
 			}
 		}
 	}
