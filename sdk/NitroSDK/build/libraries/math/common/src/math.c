@@ -73,47 +73,46 @@ u32 MATH_CountLeadingZerosFunc(u32 x)
 
 #else // !ARM9 || !(CW || __MWERKS__)
 
-u32 MATH_CountLeadingZerosFunc(u32 x)
-{
-    u32     y;
-    u32     n = 32;
+#define BLOCK(shift) \
+	lsrs	r2, r0, shift; \
+	movne	r0, r2; \
+	addeq	r1, shift \
 
-    // “ñ•ª’Tõ‚Å 0 ‚ªI‚í‚éêŠ‚ð’T‚·B
-    y = x >> 16;
-    if (y != 0)
-    {
-        n -= 16;
-        x = y;
-    }
-    y = x >> 8;
-    if (y != 0)
-    {
-        n -= 8;
-        x = y;
-    }
-    y = x >> 4;
-    if (y != 0)
-    {
-        n -= 4;
-        x = y;
-    }
-    y = x >> 2;
-    if (y != 0)
-    {
-        n -= 2;
-        x = y;
-    }
-    y = x >> 1;
-    if (y != 0)
-    {
-        n -= 2;
-    }                                  // x == 0b10 or 0b11 -> n -= 2
-    else
-    {
-        n -= x;
-    }                                  // x == 0b00 or 0b01 -> n -= x
+//	BLOCK(16)
+//	BLOCK(8)
+//	BLOCK(4)
+//	BLOCK(2)
+// But we must do this manually because metrowerks is broken
+asm u32 MATH_CountLeadingZerosFunc(u32 value) {
+    lsrs    r2, r0, #16;
+    movne   r0, r2;
+    addeq   r1, #16;
 
-    return n;
+    lsrs    r2, r0, #8;
+    movne   r0, r2;
+    addeq   r1, #8;
+
+    lsrs    r2, r0, #4;
+    movne   r0, r2;
+    addeq   r1, #4;
+
+    lsrs    r2, r0, #2;
+    movne   r0, r2;
+    addeq   r1, #2;
+
+    	// The basic block invariants at this point are (r0 >> 2) == 0 and
+	// r0 != 0. This means 1 <= r0 <= 3 and 0 <= (r0 >> 1) <= 1.
+	//
+	// r0 | (r0 >> 1) == 0 | (r0 >> 1) == 1 | -(r0 >> 1) | 1 - (r0 >> 1)
+	// ---+----------------+----------------+------------+--------------
+	// 1  | 1              | 0              | 0          | 1
+	// 2  | 0              | 1              | -1         | 0
+	// 3  | 0              | 1              | -1         | 0
+	//
+	// The r1's initial value of 1 compensates for the 1 here.
+	sub	r0, r1, r0, lsr #1
+    
+    bx      lr
 }
 
 #endif // ARM9 && (CW || __MWERKS__)
