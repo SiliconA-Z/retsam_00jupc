@@ -5033,6 +5033,7 @@ u8 GF_BGL_DotCheck( GF_BGL_INI * ini, u8 frmnum, u16 px, u16 py, u16 * pat )
 			if( (u8)pat[i] == dot ){
 				return TRUE;
 			}
+			i++;
 		}
 	}
 
