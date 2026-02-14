@@ -2397,7 +2397,7 @@ static BOOL Intro_Seq_introduction( INTRO_DEMO_WORK * wk )
 
 	case SEQ_6_1_03:
 		if( Intro_MsgPrint( wk, msg_opening_10, A_BUTTON_NOWAIT ) == TRUE ){
-			wk->mysex = PM_MALE;	//‰Šú‰»
+			wk->mysex = PM_FEMALE;	//‰Šú‰»
 			SUBSEQ_SET( SEQ_6_1_04 )
 		}
 		break;
