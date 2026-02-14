@@ -73,7 +73,7 @@ SUBDIRS			 =
 # build ARM & THUMB libraries
 NITRO_CODEGEN_ALL 	?= True
 
-#SRCDIR			= src
+SRCDIR			= src
 #INCDIR			=
 
 SRCS			= socl_startup.c	\
@@ -112,7 +112,7 @@ include	$(NITROWIFI_ROOT)/build/buildtools/modulerules
 
 ERRTABLE_H	= include/errtable.h
 
-$(OBJDIR)/socl_misc.o:	$(ERRTABLE_H)
+$(OBJDIR)/socl_misc.o:  socl_misc.c $(ERRTABLE_H)
 
 # Platform support note: Require GNU coreutils on MacOS
 SED := sed
