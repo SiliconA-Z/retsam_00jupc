@@ -431,7 +431,7 @@ const ITEMDATA_INDEX ItemDataIndex[] =
 	{ NARC_item_data_item421_dat, NARC_item_icon_item_339_NCGR, NARC_item_icon_item_328_NCLR, AGB_ITEM_HIDENMASIN02 },
 	{ NARC_item_data_item422_dat, NARC_item_icon_item_339_NCGR, NARC_item_icon_item_291_NCLR, AGB_ITEM_HIDENMASIN03 },
 	{ NARC_item_data_item423_dat, NARC_item_icon_item_339_NCGR, NARC_item_icon_item_293_NCLR, AGB_ITEM_HIDENMASIN04 },
-	{ NARC_item_data_item424_dat, NARC_item_icon_item_339_NCGR, NARC_item_icon_item_291_NCLR, AGB_ITEM_HIDENMASIN05 },
+	{ NARC_item_data_item424_dat, NARC_item_icon_item_339_NCGR, NARC_item_icon_item_328_NCLR, AGB_ITEM_HIDENMASIN05 },
 	{ NARC_item_data_item425_dat, NARC_item_icon_item_339_NCGR, NARC_item_icon_item_289_NCLR, AGB_ITEM_HIDENMASIN06 },
 	{ NARC_item_data_item426_dat, NARC_item_icon_item_339_NCGR, NARC_item_icon_item_291_NCLR, AGB_ITEM_HIDENMASIN07 },
 	{ NARC_item_data_item427_dat, NARC_item_icon_item_339_NCGR, NARC_item_icon_item_293_NCLR, AGB_ITEM_HIDENMASIN08 },
