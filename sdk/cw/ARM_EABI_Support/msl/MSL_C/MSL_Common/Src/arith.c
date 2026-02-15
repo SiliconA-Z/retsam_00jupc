@@ -164,22 +164,28 @@ lldiv_t _MSL_CDECL lldiv(long long numerator, long long denominator)
 #endif	/* #if _MSL_LONGLONG	*/	/*- mm 981023 -*/
 #endif /* _MSL_C99 */
 
-int _MSL_CDECL __msl_add(int * x, int y)	/*- cc 010510 -*/
+asm int _MSL_CDECL __msl_add(int * x, int y)	/*- cc 010510 -*/
 {
-	int _x = *x;
-	
-	if (y < 0)
-	{
-		if (_x < 0 && y < INT_MIN - _x)
-			return(0);
-	}
-	else
-		if (_x > 0 && y > INT_MAX - _x)
-			return(0);
-	
-	*x = _x + y;
-	
-	return(1);
+	#ifndef __thumb
+		ldr     r2, [r0]
+        adds    r2, r2, r1
+        mov     r1, #0
+        movvc   r1, #1
+        strvc   r2, [r0]
+        mov     r0, r1
+        bx      lr
+	#else
+	    ldr     r3, [r0]
+        adds    r2, r3, r1
+        movs    r1, #0
+        cmp     r2, r3
+        bvs     .LBB2_2
+        str     r2, [r0]
+        movs    r1, #1
+.LBB2_2:
+        mov     r0, r1
+        bx      lr
+	#endif
 }
 
 int _MSL_CDECL __msl_ladd(long * x, long y)	/*- cc 010510 -*/
