@@ -83,7 +83,7 @@ GF_G3DMAN*  GF_G3DMAN_Init(	u32 heapID,
 		NNS_GfdInitLnkPlttVramManager( PLT_SLOTSIZ * pltmanSize, man->plt_memory, plt_size, TRUE);
 	} else {
 		//フレームモードの設定
-		NNS_GfdInitFrmTexVramManager( PLT_SLOTSIZ * pltmanSize, TRUE);
+		NNS_GfdInitFrmPlttVramManager( PLT_SLOTSIZ * pltmanSize, TRUE);
 	}
 
 	if( setup != NULL ){
