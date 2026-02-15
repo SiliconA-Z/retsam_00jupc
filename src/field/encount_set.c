@@ -1843,8 +1843,10 @@ static BOOL SetEncountData(	POKEMON_PARAM *param,
 		result = CheckFixTypeEcnt(	param, inFldSpa, inData,
 									ENC_MONS_NUM_SEA, METAL_TYPE,TOKUSYU_ZIRYOKU, &no);
 		//せいでんき特性による、でんきタイプのエンカウント率の向上
-		result = CheckFixTypeEcnt(	param, inFldSpa, inData,
+		if (result == FALSE){
+			result = CheckFixTypeEcnt(	param, inFldSpa, inData,
 									ENC_MONS_NUM_SEA, ELECTRIC_TYPE,TOKUSYU_SEIDENKI, &no);
+		}
 		if (result == FALSE){
 			//特性による指定タイプとのエンカウントに失敗。通常のエンカウント
 			no = RandamPokeSetNoGround();
@@ -1857,8 +1859,10 @@ static BOOL SetEncountData(	POKEMON_PARAM *param,
 		result = CheckFixTypeEcnt(	param, inFldSpa, inData,
 									ENC_MONS_NUM_FISH, METAL_TYPE,TOKUSYU_ZIRYOKU, &no);
 		//せいでんき特性による、でんきタイプのエンカウント率の向上
-		result = CheckFixTypeEcnt(	param, inFldSpa, inData,
+		if (result == FALSE){
+			result = CheckFixTypeEcnt(	param, inFldSpa, inData,
 									ENC_MONS_NUM_FISH, ELECTRIC_TYPE,TOKUSYU_SEIDENKI, &no);
+		}
 		if (result == FALSE){
 			//特性による指定タイプとのエンカウントに失敗。通常のエンカウント
 			no = RandamPokeSetFishing(inRodType);
