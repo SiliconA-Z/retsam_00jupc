@@ -840,7 +840,7 @@ static void Title3D_Draw(TITLE_TITLEDEMO_WORK *wk, TITLE_3DWORK* g3Dwk )
 		fx32 val;
 		wk->move_rad_1 +=   2;
 		wk->move_rad_1 %= 360;
-		val = Sin360R( FX_GET_ROTA_NUM( wk->move_rad_1 ) );
+		val = Sin360R( wk->move_rad_1 );
 		val *= 0.30;
 		g3Dwk->trans.y -= val;
 #if 0		
