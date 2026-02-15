@@ -5359,7 +5359,7 @@ static void WEST_HAIKEI_PARA_CHG(WE_SYS_PTR we_sys)
 		we_sys->hc_sub_ptr->pos_x = param;
 		break;
 	case WEDEF_GP_INDEX_BGPOS_Y:
-		we_sys->hc_sub_ptr->pos_x = param;
+		we_sys->hc_sub_ptr->pos_y = param;
 		break;
 	default:
 		break;
