@@ -934,24 +934,22 @@ void	PokeParaCalcLevelUp(POKEMON_PARAM *pp)
 	
 	sys_FreeMemoryEz(ppd);
 
-	if((hp==0)&&(oldhpmax!=0)){
-		;
-	}
-	else{
-		if(monsno==MONSNO_NUKENIN){
-			hp=1;
-		}
-		else if(hp==0){
-			hp=hpmax;
-		}
-		else{
-			hp+=(hpmax-oldhpmax);
-		}
-	}
+    if ((hp == 0) && (oldhpmax != 0))
+    {
+        ;
+    }
+    else
+    {
+        // Only add to currentHP if newMaxHP went up.
+        if (hpmax > oldhpmax)
+            hp += hpmax - oldhpmax;
 
-	if(hp){
-		PokeParaPut(pp,ID_PARA_hp,(u8 *)&hp);
-	}
+        // Ensure currentHP does not surpass newMaxHP.
+        if (hp > hpmax)
+            hp = hpmax;
+
+        PokeParaPut(pp,ID_PARA_hp,(u8 *)&hp);
+    }
 
 	PokeParaFastModeOff(pp,flag);
 }
