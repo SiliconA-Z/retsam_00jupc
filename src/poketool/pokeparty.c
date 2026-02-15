@@ -224,7 +224,7 @@ void PokeParty_SetMemberData( POKEPARTY* party, int pos, POKEMON_PARAM* pp )
  * @retval	FALSE	Ž¸”s
  */
 //----------------------------------------------------------
-BOOL PokeParty_ExchangePosition(POKEPARTY * party, int pos1, int pos2)
+void PokeParty_ExchangePosition(POKEPARTY * party, int pos1, int pos2)
 {
 	struct pokemon_param * temp;
 
@@ -240,7 +240,6 @@ BOOL PokeParty_ExchangePosition(POKEPARTY * party, int pos1, int pos2)
 #if (CRC_LOADCHECK && CRCLOADCHECK_GMDATA_ID_TEMOTI_POKE)
 	SVLD_SetCrc(GMDATA_ID_TEMOTI_POKE);
 #endif //CRC_LOADCHECK
-	return FALSE;
 }
 
 //----------------------------------------------------------
