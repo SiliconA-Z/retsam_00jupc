@@ -517,15 +517,13 @@ void Particle_SystemExitAll(void)
 static inline void *Particle_LocalAlloc(PARTICLE_SYSTEM *psys, u32 size)
 {
 	void *work;
-	u32 heap_adrs, rem;
+	u32 heap_adrs;
 	
 	work = psys->heap;
 	
 	heap_adrs = (u32)psys->heap + size;
-	rem = heap_adrs % 4;
-	if(rem > 0){
-		heap_adrs += 4 - rem;	//4ƒoƒCƒg•â³
-	}
+	
+	heap_adrs = (heap_adrs + 3) & ~3;
 	psys->heap = (void*)heap_adrs;
 
 	if(psys->heap >= psys->heap_end){
