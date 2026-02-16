@@ -789,13 +789,12 @@ static void setHeaderOne(CLACT_HEADER_DATA_TMP* tbl, char* char_id, char* pltt_i
 //-----------------------------------------------------------------------------
 static char* makeStrCopy(const char* tmp, int heap)
 {
-	int len;
+	u32 len;
 	char* copy;
 	
 	len = strlen(tmp);
-	len++;
 
-	copy = sys_AllocMemoryLo(heap, len);
+	copy = sys_AllocMemoryLo(heap, len + 1);
 	strcpy(copy, tmp);
 
 	return copy;
