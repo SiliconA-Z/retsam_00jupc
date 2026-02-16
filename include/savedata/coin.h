@@ -34,8 +34,8 @@ extern COIN * SaveData_GetMyCoin(SAVEDATA * sv);
 extern void COIN_Init(COIN * coin);
 extern void COIN_Set(COIN * coin, u32 setvalue);
 extern u32 COIN_GetValue(const COIN * coin);
-extern BOOL COIN_Add(COIN * coin, u32 addvalue);
-extern BOOL COIN_Sub(COIN * coin, u32 subvalue);
+extern void COIN_Add(COIN * coin, u32 addvalue);
+extern void COIN_Sub(COIN * coin, u32 subvalue);
 extern BOOL COIN_AddCheck(const COIN * coin, u32 addvalue);
 
 #endif	__COIN_H__

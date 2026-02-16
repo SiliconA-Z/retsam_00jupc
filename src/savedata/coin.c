@@ -57,17 +57,17 @@ u32 COIN_GetValue(const COIN * coin)
  * @retval	FALSE		Ž¸”s‚µ‚½
  */
 //---------------------------------------------------------------------------
-BOOL COIN_Add(COIN * coin, u32 addvalue)
+void COIN_Add(COIN * coin, u32 addvalue)
 {
 //	GF_ASSERT(addvalue > COIN_MAX);
-	if (coin->value >= COIN_MAX) {
-		return FALSE;
+	if (coin->value > COIN_MAX) {
+		coin->value = COIN_MAX;
+		return;
 	}
 	coin->value += addvalue;
 	if (coin->value > COIN_MAX) {
 		coin->value = COIN_MAX;
 	}
-	return TRUE;
 }
 
 //---------------------------------------------------------------------------
@@ -97,13 +97,13 @@ BOOL COIN_AddCheck(const COIN * coin, u32 addvalue)
  * @retval	FALSE		Ž¸”s‚µ‚½
  */
 //---------------------------------------------------------------------------
-BOOL COIN_Sub(COIN * coin, u32 subvalue)
+void COIN_Sub(COIN * coin, u32 subvalue)
 {
 //	GF_ASSERT(subvalue > COIN_MAX);
 	if (coin->value < subvalue) {
-		return FALSE;
+		coin->value = 0;
+		return;
 	}
 	coin->value -= subvalue;
-	return TRUE;
 }
 
