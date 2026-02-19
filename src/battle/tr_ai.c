@@ -25,8 +25,8 @@
 #include "tr_ai_def.h"
 #include "tr_ai/tr_ai.dat"
 
-#include "fight_def.h"		///<BattleWork‚Ö‚ÌˆË‘¶“x‚ª‚‚¢ƒ/[ƒX‚È‚Ì‚ÅA‹–‰Â
-#include "server_def.h"		///<ServerParam‚Ö‚ÌˆË‘¶“x‚ª‚‚¢ƒ/[ƒX‚È‚Ì‚ÅA‹–‰Â
+#include "fight_def.h"		///<BattleWork‚Ö‚ÌˆË‘¶“x‚ª‚‚¢?/[ƒX‚È‚Ì‚ÅA‹–‰Â
+#include "server_def.h"		///<ServerParam‚Ö‚ÌˆË‘¶“x‚ª‚‚¢?/[ƒX‚È‚Ì‚ÅA‹–‰Â
 
 //MAKE‚ÌˆË‘¶ŠÖŒW‚ÉŠÜ‚ß‚é‚½‚ß‚ÉIncludei–{—ˆ‚Í•K—v‚È‚¢j
 #include "battle/tr_ai/tr_ai_seq.naix"
@@ -5938,8 +5938,8 @@ int	ClientAIPokeSelectAI(BATTLE_WORK *bw,int client_no)
 	u16	wazano;
 	int	type;
 	u8	checkbit;
-	u8	damage;
-	u8	damagetmp;
+	u32	damage;
+	u32	damagetmp;
 	u8	topselmons=6;
 	u8	no1,no2;
 	u32	flag;
