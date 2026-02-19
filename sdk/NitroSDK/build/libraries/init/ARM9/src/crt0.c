@@ -337,7 +337,6 @@ SDK_WEAK_SYMBOL asm void _start( void )
 
         tst             sp, #4
         beq @subne2
-@subne1:
         sub           sp, sp, #4 // for 8byte-alignment
 @subne2:
         bx              r1
@@ -358,15 +357,11 @@ SDK_WEAK_SYMBOL asm void _start( void )
  *---------------------------------------------------------------------------*/
 static asm void  INITi_CpuClear32( register u32 data, register void *destp, register u32 size )
 {
-        add     r12, r1, r2             // r12: destEndp = destp + size
-@20:
-        cmp     r1, r12                 // while (destp < destEndp)
-        blt @stmltia1
-        b @stmltia2
-@stmltia1:
-        stmia r1!, {r0}               // *((vu32 *)(destp++)) = data
-@stmltia2:
-        blt     @20
+        add     r12, r1, r2         // r12 = destEndp
+@loop:
+        cmp     r1, r12
+        stmltia r1!, {r0}          // conditional store, only if r1 < r12
+        blt     @loop
         bx      lr
 }
 
