@@ -336,8 +336,7 @@ SDK_WEAK_SYMBOL asm void _start( void )
         ldr             lr, =HW_RESET_VECTOR
 
         tst             sp, #4
-        bne @subne1
-        b @subne2
+        beq @subne2
 @subne1:
         sub           sp, sp, #4 // for 8byte-alignment
 @subne2:
