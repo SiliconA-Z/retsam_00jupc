@@ -251,11 +251,7 @@ SDK_WEAK_SYMBOL asm void _start( void )
         sub             r0, r0, #HW_SVC_STACK_SIZE
         sub             sp, r0, #4 // 4byte for stack check code
         tst             sp, #4
-        beq @do_sub
-        b @skip_sub
-@do_sub:
-        sub           sp, sp, #4 // for 8byte-alignment
-@skip_sub:
+        subeq           sp, sp, #4 // for 8byte-alignment
 
         // System mode
         ldr             r1, =SDK_IRQ_STACKSIZE
@@ -296,11 +292,7 @@ SDK_WEAK_SYMBOL asm void _start( void )
         mov                r3, r1          // for next step(flush bss)  
         mov                r0, #0
 @1:     cmp                r1, r2
-        bcc @do_str
-        b @skip_str
-@do_str:
-        str              r0, [r1], #4
-@skip_str:
+        strcc              r0, [r1], #4
         bcc                @1
 
         //---- flush static bss region
@@ -336,9 +328,7 @@ SDK_WEAK_SYMBOL asm void _start( void )
         ldr             lr, =HW_RESET_VECTOR
 
         tst             sp, #4
-        beq @subne2
-        sub           sp, sp, #4 // for 8byte-alignment
-@subne2:
+        subne           sp, sp, #4 // for 8byte-alignment
         bx              r1
 }
 
