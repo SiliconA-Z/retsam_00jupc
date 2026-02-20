@@ -268,7 +268,7 @@ SDK_WEAK_SYMBOL asm void _start( void )
         bl              INITi_CpuClear32
 
         // BG/OBJ palette (1KB)
-        mov             r0, #0
+        // r0 is still 0 from above ? INITi_CpuClear32 does not clobber r0
         ldr             r1, =HW_PLTT
         mov             r2, #HW_PLTT_SIZE
         bl              INITi_CpuClear32
@@ -514,16 +514,8 @@ static asm void do_autoload( void )
         mov     dest,     dest_begin            // dest working pointer
 @1:
         cmp     dest, dest_end
-        bmi @ldrmi1
-        b @ldrmi2
-@ldrmi1:
-        ldr     tmp, [src],  #4                 // [dest++] <- [src++]
-@ldrmi2:
-        bmi @strmi1
-        b @strmi2
-@strmi1:
-        str   tmp, [dest], #4
-@strmi2:
+        ldrmi   tmp, [src],  #4                 // [dest++] <- [src++]
+        strmi   tmp, [dest], #4
         bmi     @1
 
         //---- fill bss with 0
@@ -532,11 +524,7 @@ static asm void do_autoload( void )
         mov     tmp, #0
 @3:
         cmp     dest, dest_end
-        bcc @strcc1
-        b @strcc2
-@strcc1:
-        str   tmp, [dest], #4
-@strcc2:
+        strcc   tmp, [dest], #4
         bcc     @3
 
         //---- cache work (DC_FlushRange & IC_InvalidateRange)
