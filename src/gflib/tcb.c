@@ -155,8 +155,7 @@ static TCB * PopTCB( TCBSYS* tcbsys )
 	{
 		return NULL;
 	}
-	tcb = tcbsys->tcb_stack[ tcbsys->tcb_stack_ptr ];
-	tcbsys->tcb_stack_ptr++;
+	tcb = tcbsys->tcb_stack[ tcbsys->tcb_stack_ptr++ ];
 	return tcb;
 }
 
@@ -176,8 +175,7 @@ static int PushTCB( TCBSYS* tcbsys, TCB * tcb )
 		return FALSE;
 	}
 	TCBWorkClear( tcbsys, tcb );	//値をクリアしてからスタックに積む
-	tcbsys->tcb_stack_ptr--;
-	tcbsys->tcb_stack[ tcbsys->tcb_stack_ptr ] = tcb;
+	tcbsys->tcb_stack[ --tcbsys->tcb_stack_ptr ] = tcb;
 	return TRUE;
 }
 
