@@ -299,8 +299,8 @@ asm void MTX_RotX44_(register MtxFx44 * pDst, register fx32 sinVal, register fx3
 
     mov   r1, #1
     mov   r2, #0
-    lsl   r1, r1, #12
     mov   r3, #0
+    lsl   r1, r1, #12
 
     stmia r0!, {r1, r2, r3}
     stmia r0!, {r2, r3}
@@ -325,9 +325,9 @@ asm void MTX_RotY44_(register MtxFx44 * pDst, register fx32 sinVal, register fx3
     str   r1, [r0, #8]
 
     mov   r3, #1
+    mov   r2, #0
     mov   r1, #0
     lsl   r3, r3, #12
-    mov   r2, #0
 
     str   r2, [r0, #4]
     add   r0, #12

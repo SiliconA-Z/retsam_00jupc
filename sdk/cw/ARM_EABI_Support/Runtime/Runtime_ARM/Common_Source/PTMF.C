@@ -98,7 +98,7 @@ asm void __ptmf_scall(...)
 		ldr		r4,[ip,#PTMF.vtbl_offset]	/*	-1 or offset to function in vtable	*/
 		ldr		ip,[ip,#PTMF.func_data]		/*	function pointer or offset to vtable	*/
 		cmp		r4,#0						/*	ptmf->vtbl_offset >= 0 ?	*/
-		blt		@1
+		bmi		@1
 		ldr		ip,[a1,ip]					/*	get pointer to vtable	*/
 		ldr		ip,[ip,r4]					/*	get pointer to member function	*/
 @1		ldr		r4,[sp],#4					/*	restore scratch register(s)	*/
@@ -113,7 +113,7 @@ asm void __ptmf_scall(...)
 		ldr		r4,[r3,#PTMF.vtbl_offset]	/*	-1 or offset to function in vtable	*/
 		ldr		r3,[r3,#PTMF.func_data]		/*	function pointer or offset to vtable	*/
 		cmp		r4,#0						/*	ptmf->vtbl_offset >= 0 ?	*/
-		blt		@1
+		bmi		@1
 		ldr		r3,[a1,r3]					/*	get pointer to vtable	*/
 		ldr		r3,[r3,r4]					/*	get pointer to member function	*/
 @1		mov		ip,r3
@@ -152,7 +152,7 @@ asm void __ptmf_scall4(...)
 		ldr		r4,[ip,#PTMF.vtbl_offset]	/*	-1 or offset to function in vtable	*/
 		ldr		ip,[ip,#PTMF.func_data]		/*	function pointer or offset to vtable	*/
 		cmp		r4,#0						/*	ptmf->vtbl_offset >= 0 ?	*/
-		blt		@1
+		bmi		@1
 		ldr		ip,[a2,ip]					/*	get pointer to vtable	*/
 		ldr		ip,[ip,r4]					/*	get pointer to member function	*/
 @1		ldr		r4,[sp],#4					/*	restore scratch register(s)	*/
@@ -167,7 +167,7 @@ asm void __ptmf_scall4(...)
 		ldr		r4,[r3,#PTMF.vtbl_offset]	/*	-1 or offset to function in vtable	*/
 		ldr		r3,[r3,#PTMF.func_data]		/*	function pointer or offset to vtable	*/
 		cmp		r4,#0						/*	ptmf->vtbl_offset >= 0 ?	*/
-		blt		@1
+		bmi		@1
 		ldr		r3,[a2,r3]					/*	get pointer to vtable	*/
 		ldr		r3,[r3,r4]					/*	get pointer to member function	*/
 @1		mov		ip,r3
