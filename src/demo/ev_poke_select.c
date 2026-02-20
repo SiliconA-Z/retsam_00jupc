@@ -2646,7 +2646,7 @@ static void EvCameraMoveReq( EV_CAMERA_MOVE* p_camera_move, GF_CAMERA_PTR p_came
 
 	p_camera_move->count = 0;
  
-	TCB_Add( EvCameraMoveTcb, p_camera_move, 0 );
+	p_camera_move->tcb = TCB_Add( EvCameraMoveTcb, p_camera_move, 0 );
 }
 
 //----------------------------------------------------------------------------
