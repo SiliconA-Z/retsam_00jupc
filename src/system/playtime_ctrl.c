@@ -14,7 +14,7 @@
 
 
 static BOOL StartFlag = FALSE;
-static u64  PassedTick = 0;
+//static u64  PassedTick = 0;
 static u64  PassedSec = 0;
 static u64  StartTick = 0;
 static PLAYTIME*  PlayTimePointer = NULL;
@@ -38,7 +38,7 @@ void PlayTimeCtrl_Init( void )
 void PlayTimeCtrl_Start( PLAYTIME* pt )
 {
 	StartFlag = TRUE;
-	PassedTick = 0;
+	//PassedTick = 0;
 	PassedSec = 0;
 	PlayTimePointer = pt;
 	StartTick = APTM_GetData();
