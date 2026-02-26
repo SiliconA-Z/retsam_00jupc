@@ -766,8 +766,7 @@ BOOL ENC_AddMoveMainFx( ENC_ADDMOVE_WORK_FX* p_work )
 	p_work->x = p_work->s_x + dis;
 
 
-	if( (p_work->count + 1) <= p_work->count_max ){
-		p_work->count++;
+	if( ++p_work->count <= p_work->count_max ){
 		return FALSE;
 	}
 
