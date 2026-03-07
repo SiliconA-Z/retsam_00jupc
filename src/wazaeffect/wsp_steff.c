@@ -226,7 +226,7 @@ static void StatusEffect_BG_SetUp(WE_SYS_PTR wsp, STEFF_PARAM* param)
 	{
 		int pri;
 		
-		pri = BT_BGPriorityGet(wk->ts.wsp, WES_BF_BACKGROUND);
+		//pri = BT_BGPriorityGet(wk->ts.wsp, WES_BF_BACKGROUND);
 		pri = 2;
 		
 		CATS_ObjectBGPriSetCap(wk->cap_n, pri);
