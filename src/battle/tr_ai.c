@@ -5938,8 +5938,8 @@ int	ClientAIPokeSelectAI(BATTLE_WORK *bw,int client_no)
 	u16	wazano;
 	int	type;
 	u8	checkbit;
-	u32	damage;
-	u32	damagetmp;
+	u8	damage;
+	u8	damagetmp;
 	u8	topselmons=6;
 	u8	no1,no2;
 	u32	flag;
