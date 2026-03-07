@@ -4428,7 +4428,7 @@ static BOOL HaikeiChange_Blend(TCB_PTR tcb, HC_SYS_PTR wk)
 			int pri2 = BT_BGPriorityGet(wk->we_sys, WES_BF_EFFECT);
 
 			GF_BGL_PrioritySet(BATTLE_FRAME_BACKGROUND,	pri1);
-			GF_BGL_PrioritySet(BATTLE_FRAME_EFFECT,		pri1);
+			GF_BGL_PrioritySet(BATTLE_FRAME_EFFECT,		pri2);
 		}
 		GF_BGL_VisibleSet(BATTLE_FRAME_EFFECT, VISIBLE_ON);
 
@@ -5068,7 +5068,7 @@ void WeSysBaseBGSet(WE_SYS_PTR wsp, int frm)
 
 void WeSysBaseBGReset(WE_SYS_PTR wsp, int frm)
 {
-	int pri = BT_BGPriorityGet(wsp, WES_BF_EFFECT);
+	int pri = BT_BGPriorityGet(wsp, WES_BF_BACKGROUND);
 
 	GF_BGL_PrioritySet(frm,	pri);
 
