@@ -332,6 +332,7 @@ u32		ArchiveDataSizeGet(int arcID,int datID)
 	size=bottom-top;
 	GF_ASSERT_MSG(size!=0,"ServerArchiveDataLoadIndex:ReadDataSize=0!");
 
+	FS_CloseFile(&p_file);
 	return	size;
 }
 
