@@ -260,7 +260,7 @@ void SetupMapResource(MAP_RESOURCE_PTR outMapResource)
 			OS_Printf("local_print model_no = %d\n",no);
 			#endif
 			GF_ASSERT_MSG(outMapResource->model[no]==NULL,
-				"”z’uƒ‚ƒfƒ‹(%d)‚Ì‚Qd“o˜^‚Ì‰Â”\«‚ ‚è",no);
+				"model (%d) already loaded",no);
 			
 			outMapResource->model[no] = ArchiveDataLoadAllocByHandle(
 					model_handle, no, HEAPID_FIELD );
