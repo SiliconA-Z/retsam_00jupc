@@ -486,7 +486,10 @@ s64 GF_RTC_GetPassTime(s64 start_sec, s64 end_sec)
 	if (start_sec < end_sec) {
 		return end_sec - start_sec;
 	}
-	return end_sec + (RTC_MAX_SECOND + 1 - start_sec);
+	if (start_sec == end_sec) {
+		return 0;
+	}
+	return end_sec + (RTC_MAX_SECOND - start_sec);
 }
 
 //============================================================================================
