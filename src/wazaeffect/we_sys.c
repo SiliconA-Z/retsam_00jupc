@@ -5036,7 +5036,7 @@ static void HaikeiSubSystem_LasterScroll(TCB_PTR tcb, void* work)
 //--------------------------------------------------------------
 void WeSysBaseBGSet(WE_SYS_PTR wsp, int frm)
 {
-	int pri = BT_BGPriorityGet(wsp, WES_BF_BACKGROUND);
+	int pri = BT_BGPriorityGet(wsp, WES_BF_EFFECT);
 
 	GF_BGL_PrioritySet(frm,	pri);
 	GF_BGL_VisibleSet(frm, VISIBLE_OFF);
