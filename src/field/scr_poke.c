@@ -1276,7 +1276,7 @@ BOOL EvCmdDameTamagoChkAll(VM_MACHINE * core)
 	POKEMON_PARAM * pp;
 	POKEPARTY * temoti;
 	u16* ret_wk	= VMGetWork( core );
-	u16 i,j,max;
+	u16 j,max;
 
 	max = PokeParty_GetPokeCount(SaveData_GetTemotiPokemon(core->fsys->savedata));
 
@@ -1284,15 +1284,12 @@ BOOL EvCmdDameTamagoChkAll(VM_MACHINE * core)
 	temoti = SaveData_GetTemotiPokemon(core->fsys->savedata);
 
 	//仕様上、ダメタマゴ　＝　タマゴ＆ダメタマゴフラグが立っている
-	for(i=0;i<RIBBON_MAX;i++){
-		for(j=0;j<max;j++){
-			pp = PokeParty_GetMemberPointer( temoti, j);
-			if( PokeParaGet( pp, ID_PARA_tamago_flag, NULL ) != 0 ){			//タマゴチェック
-				if( PokeParaGet( pp, ID_PARA_fusei_tamago_flag, NULL ) != 0 ){	//ダメタマゴチェック
-					*ret_wk = TRUE;
-					return 0;
-
-				}
+	for(j=0;j<max;j++){
+		pp = PokeParty_GetMemberPointer( temoti, j);
+		if( PokeParaGet( pp, ID_PARA_tamago_flag, NULL ) != 0 ){			//タマゴチェック
+			if( PokeParaGet( pp, ID_PARA_fusei_tamago_flag, NULL ) != 0 ){	//ダメタマゴチェック
+				*ret_wk = TRUE;
+				return 0;
 			}
 		}
 	}
