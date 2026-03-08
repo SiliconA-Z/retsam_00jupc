@@ -1587,10 +1587,10 @@ void WestSp_WE_101DF( WE_SYS_PTR we_sys )
 	wk->oam_y = SoftSpriteParaGet(wk->df_ssp, SS_PARA_SHADOW_HEIGHT);
 	// 横揺れ
 	WazaTool_InitShake( &wk->df_shake, WE101_DF_SHAKE_WIDTH,0,WE101_DF_SHAKE_SYNC,WE101_DF_SHAKE_NUM );
-		
-	// ベクトルをあわせる
+	// ベクトルをあわせる（揺れ幅を方向で反転。x に加算すると揺れが左右反転しない）
 	vec_x = WazaTool_VecChangeX( wk->we_sys, WeSysDFNoGet( wk->we_sys ) );
-	wk->df_shake.x += vec_x;
+	wk->df_shake.work[4] *= vec_x;
+	wk->df_shake.work[6] *= vec_x;
 
 	// palフェード
 	SoftSpritePalFadeSet( wk->df_ssp, WE101_DF_BLACK_FADE_S, WE101_DF_BLACK_FADE_E, WE101_DF_BLACK_FADE_WAIT, WE101_DF_BLACK_FADE_COL );
