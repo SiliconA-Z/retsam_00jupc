@@ -127,7 +127,7 @@ int CommUnderPCCheck(Grid* pTouch,int dir)
         add = 0;
     }
     else if(z == (_DEF_Z + _ADD_Z)){
-        add = 8;
+        add = 0;
     }
     else{
         return INVALID_NETID;
