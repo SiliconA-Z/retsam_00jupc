@@ -5332,7 +5332,7 @@ static void _damageAnimLoop(_EVENT_ROCK_WORK* mdw)
     int i;
     VecFx32 tmpVex;
 
-    for(i = 0;i < _CLACT_ROCK_OAMNUM;i++){
+    for(i = 1;i < _CLACT_ROCK_OAMNUM;i++){
         if(mdw->partsXAdd[i] != 0){
             mdw->partsX[i] += mdw->partsXAdd[i];
             mdw->partsY[i] += mdw->partsYAdd[i];
